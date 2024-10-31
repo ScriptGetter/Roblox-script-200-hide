@@ -1,0 +1,49 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local Window = Library:NewWindow("By XS200")
+
+local Main = Window:NewSection("XS200 MAIN")
+
+-- Noclip Functionality
+local noclipEnabled = false
+Main:CreateToggle("NOCLIP", function(value)
+    noclipEnabled = value
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+
+    if noclipEnabled then
+        print("Noclip Enabled")
+        while noclipEnabled do
+            wait()
+            for _, part in pairs(character:GetDescendants()) do
+                if part:IsA("BasePart") then
+                    part.CanCollide = false
+                end
+            end
+        end
+    else
+        print("Noclip Disabled")
+    end
+end)
+
+-- Speed Adjustment
+Main:CreateTextbox("Speed", function(text)
+    local speed = tonumber(text)
+    if speed then
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoid = character:WaitForChild("Humanoid")
+        humanoid.WalkSpeed = speed
+        print("speed)
+    else
+        print("Invalid speed value")
+    end
+end)
+
+local Main = Window:NewSection("Toraisme")
+
+Main:CreateButton("INFINITE MONEY", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ToraScript/Script/main/HideorDie"))()
+print("executed")
+
+end)
